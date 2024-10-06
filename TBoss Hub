@@ -1,0 +1,90 @@
+-- THE BOSS HUB - Script para Blox Fruits
+-- Anti-cheat básico
+local Player = game.Players.LocalPlayer
+local HttpService = game:GetService("HttpService")
+local guiService = game:GetService("GuiService")
+
+if Player:HasCustomState("Cheater") then
+    warn("Você foi marcado como cheater. Desconectando...")
+    Player:Kick("Detectado como cheater.")
+end
+
+-- Função de auto-update
+function updateScript()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/seu-link-do-github-aqui/main/THEBOSSHUB.lua"))()
+end
+
+-- Menu e Tabs usando UI Library
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Xero2409/NinjaHub/main/ninjahub.lua"))()
+local Window = Library:CreateWindow("THE BOSS HUB")
+
+-- Funções Auto Farm
+local AutoFarmTab = Window:CreateTab("Auto Farm")
+AutoFarmTab:AddToggle("Auto Farm", function(state)
+    if state then
+        -- Código para ativar Auto Farm
+    else
+        -- Código para desativar Auto Farm
+    end
+end)
+
+AutoFarmTab:AddToggle("Auto Pick Up Items", function(state)
+    if state then
+        -- Código para ativar coleta automática
+    else
+        -- Código para desativar coleta automática
+    end
+end)
+
+AutoFarmTab:AddToggle("Auto Farm Bounty", function(state)
+    if state then
+        -- Código para farm de bounty
+    else
+        -- Código para desativar farm de bounty
+    end
+end)
+
+AutoFarmTab:AddToggle("Auto Pick Up Fruits", function(state)
+    if state then
+        -- Código para coleta de frutas
+    else
+        -- Código para desativar coleta de frutas
+    end
+end)
+
+-- Menu 2 para funcionalidades adicionais
+local Menu2Tab = Window:CreateTab("Menu 2")
+Menu2Tab:AddToggle("Anti AFK", function(state)
+    if state then
+        -- Código para evitar AFK kick
+        local vu = game:GetService("VirtualUser")
+        game:GetService("Players").LocalPlayer.Idled:connect(function()
+            vu:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+            wait(1)
+            vu:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+        end)
+    end
+end)
+
+Menu2Tab:AddSlider("Walk Speed", 16, 0, 200, function(value)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = value
+end)
+
+Menu2Tab:AddToggle("ESP", function(state)
+    if state then
+        -- Código para ativar ESP
+    else
+        -- Código para desativar ESP
+    end
+end)
+
+Menu2Tab:AddToggle("ESP Fruits", function(state)
+    if state then
+        -- Código para mostrar frutas no mapa
+    else
+        -- Código para desativar mostrar frutas
+    end
+end)
+
+-- Carregar Script Principal
+loadstring(game:HttpGet("https://raw.githubusercontent.com/seu-link-do-github-aqui/main/THEBOSSHUB.lua"))()
